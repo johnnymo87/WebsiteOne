@@ -32,9 +32,9 @@ describe ProjectsController do
     #      created_at: '2014-01-23 23:39:15'
     #  }) } }
     it 'projects variable contains projects' do
-      Project.stub(:paginate).and_return('yep')
+      Project.stub(:paginate).and_return('Carrier has arrived.')
       get :index
-      expect(assigns(:projects)).to eq 'yep'
+      expect(assigns(:projects)).to eq 'Carrier has arrived.'
     end
   end
 
