@@ -82,11 +82,6 @@ Given(/^we paginate (\d+) projects per page$/) do |arg|
   #pending
 end
 
-Then(/^I should see these projects in page "([^"]*)"$/) do |table|
- # pending
-end
-
-
 Given(/^I am on the home page$/) do
   visit "/"
 end

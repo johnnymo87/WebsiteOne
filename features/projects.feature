@@ -7,11 +7,11 @@ Feature: Create and maintain projects
     Given the following projects exist:
       | title         | description             | status   |
       | hello world   | greetings earthlings    | active   |
-      | a hello mars    | greetings aliens        | inactive |
-      | hello jupiter |greetings jupiter folks  | active   |
-      | hello mercury |greetings mercury folks  | inactive |
-      | hello saturn  |greetings saturn folks   | active   |
-      | hello sun     |greetings sun folks      | active   |
+      | hello mars    | greetings aliens        | inactive |
+      | hello jupiter | greetings jupiter folks | active   |
+      | hello mercury | greetings mercury folks | inactive |
+      | hello saturn  | greetings saturn folks  | active   |
+      | hello sun     | greetings sun folks     | active   |
 #  Scenarios for Index page
 
   Scenario: List of projects in table layout
@@ -19,9 +19,9 @@ Feature: Create and maintain projects
     When I follow "Our projects"
     Then I should see "List of Projects"
     Then I should see:
-      | Text          |
-      | Create        |
-      | Status        |
+      | Text   |
+      | Create |
+      | Status |
 
   Scenario: Columns in projects table
     When I go to the "projects" page
@@ -55,30 +55,36 @@ Feature: Create and maintain projects
     When I go to the "projects" page
     Then I should see "List of Projects" table
     And I should see buttons:
-      | Button  |
-      | Edit         |
+      | Button |
+      | Edit   |
 
   Scenario: Do not display Show, edit, delete buttons in projects table when not logged in
     Given I am not logged in
     When I go to the "projects" page
     Then I should see "List of Projects" table
     And I should not see buttons:
-      | Button       |
-      | Edit         |
+      | Button |
+      | Edit   |
 
   Scenario: Display pagination in "Our Projects" page
     Given I am on the home page
     When I follow "Our projects"
     And we paginate 5 projects per page
-    Then I should see these projects in page "1"
-    | hello world     |
-    | hello mars      |
-    | hello jupiter   |
-    | hello mercury   |
-    | hello saturn    |
-    When I click "Naxt"
-    Then I should see these projects in page "2"
-    | hello sun       |
+    Then I should see:
+      | hello sun     |
+      | hello mars    |
+      | hello jupiter |
+      | hello mercury |
+      | hello saturn  |
+    And I should not see "hello world"
+    When I click "Next"
+    Then I should not see:
+      | hello sun     |
+      | hello mars    |
+      | hello jupiter |
+      | hello mercury |
+      | hello saturn  |
+    And I should see "hello world"
 
 
 
@@ -92,27 +98,27 @@ Feature: Create and maintain projects
     When I click "New Project"
     Then I should see "Creating a new Project"
     And I should see a form with:
-      | Field        |   |
-      | Title        |   |
-      | Description  |   |
-      | Status       |   |
+      | Field       |  |
+      | Title       |  |
+      | Description |  |
+      | Status      |  |
 
   Scenario: Saving a new project: success
     Given I am logged in
     And I am on the "projects" page
     And I follow "New Project"
     When I fill in:
-      | Field        | Text              |
-      | Title        | Title New         |
-      | Description  | Description New   |
+      | Field       | Text            |
+      | Title       | Title New       |
+      | Description | Description New |
     And I select "Status" to "Active"
     And I click the "Submit" button
     Then I should be on the "projects" page
     And I should see:
-      | Text              |
-      | Title New         |
-      | Description New   |
-      | Active        |
+      | Text            |
+      | Title New       |
+      | Description New |
+      | Active          |
     And I should see "Project was successfully created."
 
   Scenario: Saving a new project: failure
@@ -132,10 +138,10 @@ Feature: Create and maintain projects
     Then show me the page
     When I click "hello saturn" in the list of projects
     Then I should see:
-      | Text                  |
+      | Text                   |
       | hello saturn           |
-      | greetings saturn folks  |
-      | active                |
+      | greetings saturn folks |
+      | active                 |
     And I should see "Created"
 
 
@@ -153,11 +159,11 @@ Feature: Create and maintain projects
     And I am on the "Projects" page
     When I click the "Edit" button for project "hello saturn"
     Then I should see a form with:
-      | Field        | Text                  |
-      | Title        | hello saturn           |
-      | Description  | greetings saturn folks  |
+      | Field       | Text                   |
+      | Title       | hello saturn           |
+      | Description | greetings saturn folks |
     And I should see a selector with options
-      |Active|
+      | Active |
 
 
   Scenario: Edit page has a return link

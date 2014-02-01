@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  require 'will_paginate/array'
   layout 'with_sidebar'
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
@@ -9,7 +10,7 @@ class ProjectsController < ApplicationController
   def index
     #@projects = Project.order(created_at: :desc)
     @projects = Project.search(params[:search], params[:page])
-
+    #@projects = Project.paginate(:page => params[:page], :per_page => 5)
 
   end
 
