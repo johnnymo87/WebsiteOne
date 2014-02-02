@@ -15,12 +15,12 @@ describe ProjectsController do
     controller.stub :current_user => user
   end
 
-  describe "pagination" do
-    it "should paginate the feed" do
-      visit root_path
-      page.should have_selector("div.pagination")
-    end
-  end
+  #describe "pagination" do
+  #  it "should paginate the feed" do
+  #    visit root_path
+  #    page.should have_selector("div.pagination")
+  #  end
+  #end
 
   describe '#index' do
     #let(:projects) { (1..8).map {|id|
@@ -32,7 +32,7 @@ describe ProjectsController do
     #      created_at: '2014-01-23 23:39:15'
     #  }) } }
     it 'projects variable contains projects' do
-      Project.stub(:paginate).and_return('Carrier has arrived.')
+      Project.stub(:search).and_return 'Carrier has arrived.'
       get :index
       expect(assigns(:projects)).to eq 'Carrier has arrived.'
     end
@@ -226,7 +226,6 @@ describe ProjectsController do
 
   it 'shows a notice if requested action for non-existing project ' do
     get :edit, id: 'non-existent'
-    p response.body
     expect(flash[:alert]).to eq('Requested action failed.  Project was not found.')
     expect(response).to redirect_to(projects_path)
   end
