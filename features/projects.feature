@@ -32,13 +32,13 @@ Feature: Create and maintain projects
     Given  I am on the "home" page
     When I follow "Our projects"
     Then I should see:
-      | Text                 |
-      | hello world          |
-      | greetings earthlings |
-      | active               |
-      | hello mars           |
-      | greetings aliens     |
-      | inactive             |
+      | Text             |
+      | hello mars       |
+      | greetings aliens |
+      | inactive         |
+      | hello mars       |
+      | greetings aliens |
+      | inactive         |
 
   Scenario: Show New Project button if user is logged in
     When I am logged in
@@ -66,29 +66,24 @@ Feature: Create and maintain projects
       | Button |
       | Edit   |
 
-  Scenario: Display pagination in "Our Projects" page
+  Scenario: Alphabetically display pagination in "Our Projects" page
     Given I am on the home page
     When I follow "Our projects"
-    And we paginate 5 projects per page
     Then I should see:
-      | hello sun     |
-      | hello mars    |
-      | hello jupiter |
-      | hello mercury |
-      | hello saturn  |
-    And I should not see "hello world"
+      | greetings aliens        |
+      | greetings jupiter folks |
+      | greetings mercury folks |
+      | greetings saturn folks  |
+      | greetings sun folks     |
+    And I should not see "greetings earthlings"
     When I click "Next"
     Then I should not see:
-      | hello sun     |
-      | hello mars    |
-      | hello jupiter |
-      | hello mercury |
-      | hello saturn  |
-    And I should see "hello world"
-
-
-
-
+      | greetings aliens        |
+      | greetings jupiter folks |
+      | greetings mercury folks |
+      | greetings saturn folks  |
+      | greetings sun folks     |
+    And I should see "greetings earthlings"
 
 #  Scenarios for NEW page
 

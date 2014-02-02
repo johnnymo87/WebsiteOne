@@ -78,10 +78,6 @@ When(/^I am not a member of project "([^"]*)"$/) do |name|
   step %Q{I should stop being a member of project "#{name}"}
 end
 
-Given(/^we paginate (\d+) projects per page$/) do |arg|
-  #pending
-end
-
 Given(/^I am on the home page$/) do
   visit "/"
 end
