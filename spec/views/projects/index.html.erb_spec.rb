@@ -18,7 +18,7 @@ describe 'projects/index.html.erb' do
   context 'pagination' do
     it 'should render previous, next, and page numbers' do
       render
-      rendered.should have_content 'Previous 1 2 Next'
+      rendered.should have_content '← Previous 1 2 Next →'
     end
   end
 
