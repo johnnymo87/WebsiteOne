@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20140417124942) do
     t.string   "github_profile_url"
     t.boolean  "display_hire_me"
     t.text     "bio"
+    t.boolean  "receive_mailings",       default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
