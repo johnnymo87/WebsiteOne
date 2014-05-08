@@ -45,6 +45,7 @@ describe 'articles/show' do
   context 'user is signed in' do
     before :each do
       view.stub(:user_signed_in?).and_return(true)
+      assign(:current_user, @user)
     end
 
     it 'renders a edit button' do
