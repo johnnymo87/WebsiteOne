@@ -42,6 +42,7 @@ gem 'addressable'       # used for uri validation
 gem 'pivotal-tracker-api' # used for Pivotal Tracker API v5
 gem 'exception_notification'
 gem 'acts_as_votable', '~> 0.8.0'
+gem 'utf8-cleaner'
 
 gem 'yui-compressor'
 gem 'compass-rails'
