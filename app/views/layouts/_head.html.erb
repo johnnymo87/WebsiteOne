@@ -11,4 +11,5 @@
   <% if ENV['ENABLE_GOOGLE_ANALYTICS'] %>
     <%= javascript_include_tag 'google-analytics', 'data-turbolinks-track' => true %>
   <% end %>
+  <%= yield :scripts  %>
 </head>
